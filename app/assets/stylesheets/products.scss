@@ -40,6 +40,23 @@ main section.categories-show {
         transition: all 0.3s;
       }
 
+      aside.sold-out {
+        position: absolute;
+        opacity: 0.6;
+        -webkit-transition: opacity 0.3s;
+        -moz-transition: opacity 0.3s;
+        -ms-transition: opacity 0.3s;
+        -o-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+        top:0;
+        left:0;
+        padding: 10px;
+        border-top-left-radius: 4px;
+        border-bottom-right-radius: 20px;
+        font-size: 1em;
+        background-color: red;
+      }
+
       aside.price {
         position: absolute;
         top: 0;
@@ -54,7 +71,9 @@ main section.categories-show {
       &:hover {
 
         border-color: #999;
-
+        aside.sold-out{
+          opacity: 1;
+        }
         footer {
           opacity: 1.0;
         }
