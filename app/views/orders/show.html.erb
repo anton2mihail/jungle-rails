@@ -3,11 +3,13 @@
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
   </header>
-
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+  <div class="card-group">
+<% @order.line_items.each do |line_item| %>
+  <%= render 'line_item', line_item: line_item %><% end %>
   </div>
-
+  <hr>
+  <small>Order Total <%= @order.total_cents / 100 %>.<%= (@order.total_cents - (@order.total_cents / 100)).to_s[0..1].to_i %>$</small>
+  <hr>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>

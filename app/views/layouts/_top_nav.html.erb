@@ -1,69 +1,59 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Jungle</a>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Jungle</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+    <div class="d-flex">
+
+        <%= link_to 'Home', :root, class: "nav-item" %>
+
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Categories
+          <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu">
+          <% Category.all.each do |category| %>
+            <div class="dropdown-item"><%= link_to category.name, category %></div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <%= link_to 'Home', :root %>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Categories
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <% Category.all.each do |category| %>
-              <li><%= link_to category.name, category %></li>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in?%>
-          <li>
-            <%=link_to "Log Out", logout_path %></li>
+
+
+
+
+
+<div class="d-flex">
+      <% if logged_in?%>
+          <%=link_to "Log Out", logout_path, class: "nav-item" %>
+      <% else %>
+        <%=link_to "Log In",login_path, class: "nav-item" %>&nbsp; &nbsp;
+        <%= link_to "Sign Up",  signup_path, class: "nav-item" %>
+      <% end %>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <% if logged_in?%>
+            <span class="text-danger"><%= fa_icon 'lock', text: "Hiya, #{current_user.first_name}" %></span>
           <% else %>
-          <li > <%=link_to"Log In",login_path%></li>
-            <li><%= link_to "Sign Up",  signup_path %></li>
-          <% end %>
-       <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <% if logged_in?%>
-              <span class="text-danger"><%= fa_icon 'lock', text: "Hiya, #{current_user.first_name}" %></span>
-            <% else %>
             <span class="text-danger"><%= fa_icon 'lock', text: 'Admin' %></span>
-              <% end %>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <% if logged_in?%>
-                Hiya, <%= current_user.first_name %> You're looking mighty fine today!
-                <%=link_to "Log Out", logout_path %>
-                <% else %>
-                <%=link_to"Log In",login_path%> or
-                <%= link_to "Sign Up",  signup_path %>
-              <% end %>
-            </li>
-            <li><%= link_to 'Dashboard', [:admin, :root] %></li>
-            <li><%= link_to 'Products',  [:admin, :products] %></li>
-            <li><%= link_to 'Categories',  [:admin, :categories] %></li>
-          </ul>
-        </li>
-        <li>
-          <%= link_to cart_path do %>
-            <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
           <% end %>
-        </li>
-      </ul>
-    </div>
+        </a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item"><%= link_to 'Dashboard', [:admin, :root] %></div>
+          <div class="dropdown-item"><%= link_to 'Products',  [:admin, :products] %></div>
+          <div class="dropdown-item"><%= link_to 'Categories',  [:admin, :categories] %></div>
+        </div>
+      </div>
+        <%= link_to cart_path, class: 'nav-item' do %>
+          <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
+        <% end %>
+</div>
   </div>
 </nav>
+
+
+
