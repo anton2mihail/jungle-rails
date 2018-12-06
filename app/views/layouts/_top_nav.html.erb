@@ -28,7 +28,7 @@
 
 
 <div class="d-flex">
-      <% if logged_in?%>
+      <% if logged_in? %>
           <%=link_to "Log Out", logout_path, class: "nav-item" %>
       <% else %>
         <%=link_to "Log In",login_path, class: "nav-item" %>&nbsp; &nbsp;

@@ -1,0 +1,12 @@
+<% @order.line_items.each do |line_item| %>
+  <%= line_item.product.name %>
+
+ <%= line_item.product.description %>
+
+
+   Quantity: <%= line_item.quantity %>
+
+   Product Total: <%= line_item.item_price_cents / 100 %>.<%= (line_item.item_price_cents - (line_item.item_price_cents / 100)).to_s[0..1].to_i %>$
+
+   Last updated <%= line_item.updated_at %>
+<% end %>
