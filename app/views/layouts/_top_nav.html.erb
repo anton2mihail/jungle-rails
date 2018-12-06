@@ -27,10 +27,20 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if logged_in?%>
+          <li>
+            <%=link_to "Log Out", logout_path %></li>
+          <% else %>
+          <li > <%=link_to"Log In",login_path%></li>
+            <li><%= link_to "Sign Up",  signup_path %></li>
+          <% end %>
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-
+            <% if logged_in?%>
+              <span class="text-danger"><%= fa_icon 'lock', text: "Hiya, #{current_user.first_name}" %></span>
+            <% else %>
             <span class="text-danger"><%= fa_icon 'lock', text: 'Admin' %></span>
+              <% end %>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
