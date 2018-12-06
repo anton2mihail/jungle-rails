@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  #skip_before_action :login_required,:only=>[:index]
   def index
     @products = Product.all.order(created_at: :desc)
   end
