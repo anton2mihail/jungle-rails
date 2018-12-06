@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
 
   def show
+    @empty = empty?
+    p @empty
   end
 
   def add_item
@@ -23,6 +25,15 @@ class CartsController < ApplicationController
     cart[product_id] = (cart[product_id] || 0) + delta
     cart.delete(product_id) if cart[product_id] < 1
     update_cart cart
+  end
+
+  def empty?
+    p cart.size
+    if cart.size <= 0
+      true
+    else
+    false
+      end
   end
 
 end

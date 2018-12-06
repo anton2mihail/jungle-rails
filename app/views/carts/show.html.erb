@@ -1,3 +1,4 @@
+<% if !@empty %>
 <section class="cart-show">
 
   <header class="page-header">
@@ -35,18 +36,49 @@
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-amount="<%= cart_subtotal_cents %>"
-          data-name="Jungle"
-          data-description="<%= current_user.first_name%> <%= current_user.last_name %>'s Jungle Order"
-          data-locale="auto"
-          data-email="<%= current_user.email %>"
-          data-currency="cad">
-        </script>
-      <% end %>
+        <%if current_user %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= cart_subtotal_cents %>"
+            data-name="Jungle"
+            data-description="<%= current_user.first_name %> <%= current_user.last_name %>'s Jungle Order"
+            data-locale="auto"
+            data-email="<%= current_user.email %>"
+            data-currency="cad">
+          </script>
+          <% else %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= cart_subtotal_cents %>"
+            data-name="Jungle"
+            data-description="Guest's Jungle Order"
+            data-locale="auto"
+            data-email="<%= ENV['DEFAULT_EMAIL'] %>"
+            data-currency="cad">
+          </script>
+        <% end %>
+
     </div>
   </div>
 
 </section>
+      <% end %>
+<% else %>
+  <div class="card">
+    <div class="card-header">
+      <%if current_user %>
+        Hi,
+      <%= current_user.first_name %>
+      <% else %>
+      Good day to ya Guest!
+      <% end %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Regarding Your cart</h5>
+      <p class="card-text">Your cart looks kinda lonely, visit out products page to give it some friends.</p>
+      <%= link_to "Go Shopping", root_path, class: 'btn btn-info' %>
+    </div>
+  </div>
+<% end %>
