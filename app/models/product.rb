@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, dependent: :destroy,class_name: "Review"
   monetize :price_cents, numericality: true
   mount_uploader :image, ProductImageUploader
 
@@ -9,5 +9,4 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates :quantity, presence: true
   validates :category, presence: true
-
 end

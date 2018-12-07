@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'font_awesome5_rails'
 gem 'puma'
 gem 'bootstrap', '~> 4.1.3'
 gem 'bootstrap-sass'
@@ -34,7 +34,8 @@ gem 'money-rails'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
-gem 'faker'
+gem 'faker', github: 'stympy/faker'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

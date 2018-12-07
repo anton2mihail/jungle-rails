@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: cbce628d74c8c16db07569d27bd4a422b3886473
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -65,11 +72,11 @@ GEM
       dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
-    faker (1.6.1)
-      i18n (~> 0.5)
     ffi (1.9.25)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
+    font_awesome5_rails (0.4.2)
+      railties (>= 4.2, < 5.3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     http-cookie (1.0.2)
@@ -209,8 +216,9 @@ DEPENDENCIES
   byebug
   carrierwave
   dotenv-rails
-  faker
+  faker!
   font-awesome-rails
+  font_awesome5_rails
   jbuilder (~> 2.0)
   jquery-rails
   money-rails

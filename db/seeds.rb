@@ -20,7 +20,15 @@ unless Rails.env.development?
 end
 
 # Let's do this ...
+## USER
+puts "Create User"
 
+User.create!({
+    email: ENV['DEFAULT_TO_EMAIL'],
+    first_name: 'Sam',
+    last_name: 'Saddin',
+    password_digest: BCrypt::Password.create(ENV['DEFAULT_SEEDED_USER_PASSWORD'])
+             })
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -131,6 +139,77 @@ cat3.products.create!({
   quantity: 0,
   price: 2_483.75
 })
+Review.destroy_all
 
+Review.create!({
+    product_id: 1,
+    user_id: 1,
+    user_name:'Sam',
+    description: 'This shirt is just about as classy as the name implies. Wearable in any situation, specifically for those who believe that versatility is paramount.',
+    rating: 4
+})
+Review.create!({
+    product_id: 2,
+    user_id: 1,
+    user_name:'Sam',
+    description: 'These pants make you stand out in more ways than one tbh...',
+    rating: 3
+})
 
+Review.create!({
+    product_id: 1,
+    user_id: 1,
+    user_name:'Sam',
+    description: 'Pretty damn classy if i do say so myself.',
+    rating: 5
+})
+
+Review.create!({
+    product_id: 3,
+    user_id: 1,
+    user_name:'Sam',
+    description: 'How hipster are you? Probably not hipster enough for this hat. ;)',
+    rating: 5
+})
+Review.create!({
+                   product_id: 3,
+                   user_id: 1,
+                   user_name:'Sam',
+                   description: 'Best. Product. Ever! I just can\'t get enough of Hipster hat. I want to get a T-Shirt with Hipster hat on it so I can show it off to everyone. Thanks for the great service. Hipster hat is the most valuable business resource we have EVER purchased.',
+                   rating: 5
+               })
+
+Review.create!({
+                   product_id: 4,
+                   user_id: 1,
+                   user_name:'Sam',
+                   description: 'We were treated like poop. Very easy to use.',
+                   rating: 3
+               })
+
+Review.create!({
+                   product_id: 4,
+                   user_id: 1,
+                   user_name:'Sam',
+                   description: 'I will recommend you to my colleagues. I am completely blown away. Hipster socks is the most valuable business resource we have EVER purchased.',
+                   rating: 5
+               })
+
+Review.create!({
+                   product_id: 5,
+                   user_id: 1,
+                   user_name:'Sam',
+                   description: 'It\'s incredible. We\'ve seen amazing results already. Needless to say we are extremely satisfied with the results. Buy this now. ',
+                   rating: 4
+               })
+
+25.times do
+Review.create!({
+                   product_id: rand(1..12),
+                   user_id: 1,
+                   user_name:'Sam',
+                   description: Faker::TvShows::RickAndMorty.quote,
+                   rating: rand(1..5)
+               })
+end
 puts "DONE!"

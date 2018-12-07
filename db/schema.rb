@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20181207160919) do
     t.integer  "user_id"
     t.text     "description"
     t.integer  "rating"
+    t.text     "user_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -5,7 +5,7 @@
   </header>
 
   <article class="product-detail">
-
+<div class="container">
     <div class="row">
 
       <div class="col-sm-4">
@@ -22,10 +22,70 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Average Rating</dt>
+            <dd>
+              <%= @product.reviews.average(:rating).present? ? @product.reviews.average(:rating).round : 0 %>/5
+            </dd>
         </dl>
       </div>
     </div>
-
+</div>
   </article>
+  <% if current_user %>
+  <article>
+    <div class="container">
+    <h3>Hiya <%= current_user.first_name %>, enter a review for <%= @product.name %>:</h3>
+  <%= form_for :reviews, url: product_reviews_path(@product, :review) do |form| %>
+        <%= form.hidden_field :product_id, :value => @product.id %>
+        <%= form.hidden_field :user_id, :value =>  current_user.id %>
+        <%= form.hidden_field :user_name, :value =>  current_user.first_name %>
+        <div class="form-group">
+      <%= form.label :rating %>
+      <%= form.select :rating, options_for_select([["Rating", ""], "1", "2", "3", "4", "5"]), class:'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :description%>
+      <%= form.text_area :description, class:'form-control' %>
+    </div>
+  <%= form.submit 'Post Review', class: 'btn btn-primary' %>
 
+  <% end %>
+    </div>
+    <br>
+  </article>
+    <% else %>
+    <br>
+    <article>
+      <div class="container">
+        <div class="card" style="width:30rem;">
+          <div class="card-body">
+            <h5 class="card-title">Hiya Guest!</h5>
+            <p class="card-text">Wanna Place a review? Please <%= link_to 'SignUp', signup_path %> if you're new, or <%= link_to 'Login', login_path %> if you know the place.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% end %>
+  <article>
+    <div class="container">
+      <% @product.reviews.order(created_at: :desc).each do |review| %>
+          <div class="card" style="width:30rem;" >
+            <div class="card-header">
+              For <%= @product.name %>, <% review.rating.times do |d| %><%= fa_icon('d-and-d', type: :fab) %><% end %>
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p><%= review.description %></p>
+                <footer class="blockquote-footer">
+                  By <cite title="<%= review.user_name %>"><%= review.user_name %>, at <%= review.created_at %></cite>
+                </footer>
+              </blockquote>
+              <% if current_user %>
+              <%= button_to "Delete", product_review_path(@product ,:id => review.id), :method => :delete, class:'btn btn-danger' %>
+                <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </article>
 </section>

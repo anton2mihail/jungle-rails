@@ -25,4 +25,8 @@
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
+  <aside class="review">
+    Average Rating:
+    <%= product.reviews.average(:rating).present? ? product.reviews.average(:rating).round : 0 %>/5
+  </aside>
 </article>
