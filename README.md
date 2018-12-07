@@ -44,4 +44,9 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 ###### ** Other dependencies are declared in the gemfile
 
 ## Screenshots
-!(alt text)[../screenshots]
+![alt text](https://github.com/anton2mihail/jungle-rails/blob/master/screenshots/admin_products.png "Admin Products Page")
+![alt text](https://github.com/anton2mihail/jungle-rails/blob/master/screenshots/cart.png "Cart Page")
+![alt text](https://github.com/anton2mihail/jungle-rails/blob/master/screenshots/index.png "Products Page")
+![alt text](https://github.com/anton2mihail/jungle-rails/blob/master/screenshots/info.png "Info Page")
+![alt text](https://github.com/anton2mihail/jungle-rails/blob/master/screenshots/reviews.png "Some Reviews")
+
