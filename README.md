@@ -1,6 +1,6 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+A mini e-commerce application built with Rails 4.2.
 
 
 ## Setup
@@ -9,11 +9,25 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 2. Run `bundle install` to install dependencies
 3. Create `config/database.yml` by copying `config/database.example.yml`
 4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-5. Run `bin/rake db:reset` to create, load and seed db
+5. Make sure to create a test gmail account, or use your own for the `.env` so that the user that is generated from the seeds uses your email
 6. Create .env file based on .env.example
-7. Sign up for a Stripe account
-8. Put Stripe (test) keys into appropriate .env vars
-9. Run `bin/rails s -b 0.0.0.0` to start the server
+7. Run `bin/rake db:reset` to create, load and seed db
+8. Sign up for a Stripe account
+9. Put Stripe (test) keys into appropriate .env vars
+10. Run `bin/rails s` to start the server
+11. Enjoy!
+
+## Default User
+
+The default user is found in the `/db/seeds.rb` file
+the password is : `123`
+This user is used to login and play with the functions of the website.
+Make sure to replace 
+```env
+DEFAULT_TO_EMAIL=example@gmail.com
+```
+with a real email address at which you'd like to receive the test order confirmation
+email. 
 
 ## Stripe Testing
 
@@ -26,3 +40,8 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+###### ** Other dependencies are declared in the gemfile
+
+## Screenshots
+!(alt text)[../screenshots]

@@ -41,7 +41,7 @@
         <%= form.hidden_field :user_name, :value =>  current_user.first_name %>
         <div class="form-group">
       <%= form.label :rating %>
-      <%= form.select :rating, options_for_select([["Rating", ""], "1", "2", "3", "4", "5"]), class:'form-control' %>
+      <%= form.select(:rating,["1", "2", "3", "4", "5"], {include_blank: "Rating"},{:class =>"form-control"}) %>
     </div>
     <div class="form-group">
       <%= form.label :description%>
@@ -80,9 +80,9 @@
                   By <cite title="<%= review.user_name %>"><%= review.user_name %>, at <%= review.created_at %></cite>
                 </footer>
               </blockquote>
-              <% if current_user %>
-              <%= button_to "Delete", product_review_path(@product ,:id => review.id), :method => :delete, class:'btn btn-danger' %>
-                <% end %>
+              <% if current_user && current_user.id == review.user_id %>
+                <%= button_to "Delete", product_review_path(@product ,:id => review.id), :method => :delete, class:'btn btn-danger' %>
+              <% end %>
             </div>
           </div>
       <% end %>
