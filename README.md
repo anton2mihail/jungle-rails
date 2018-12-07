@@ -26,6 +26,7 @@ Make sure to replace
 ```env
 DEFAULT_TO_EMAIL=example@gmail.com
 ```
+in your `.env` file
 with a real email address at which you'd like to receive the test order confirmation
 email. 
 
