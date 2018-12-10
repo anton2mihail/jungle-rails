@@ -24,7 +24,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "Controller is being called."
+    if params[:password] == params[:password_confirmation] && !User.find_by(:email => params[:email])
     @user = User.new(user_params)
+    else
+      raise(ActiveRecord::RecordInvalid)
+    end
 
     respond_to do |format|
       if @user.save
